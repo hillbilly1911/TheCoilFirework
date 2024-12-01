@@ -1,0 +1,12 @@
+name: TheCoilFireworks
+version: '1.0'
+main: theCoilFireworks.TheCoilFireworks
+api-version: '1.21'
+commands:
+  get unbreakable firework:
+    description: Get an unbreakable firework
+    usage: /getunbreakablefirework
+permissions:
+  firework.get:
+    description: Allows the player to get unbreakable fireworks
+    default: op

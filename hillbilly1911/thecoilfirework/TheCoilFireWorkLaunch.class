@@ -1,0 +1,15 @@
+/* Decompiler 13ms, total 201ms, lines 15 */
+package ca.redqueen.Kira.theCoilFireworks;
+
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class TheCoilFireWorksLaunch extends JavaPlugin {
+   public void onEnable() {
+      Bukkit.getServer().getConsoleSender().sendMessage("Fireworks are ready!");
+   }
+
+   public void onDisable() {
+      Bukkit.getServer().getConsoleSender().sendMessage("Fireworks are out!");
+   }
+}

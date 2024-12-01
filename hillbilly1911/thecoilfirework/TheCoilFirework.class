@@ -1,0 +1,43 @@
+/* Decompiler 25ms, total 346ms, lines 43 */
+package theCoilFireworks;
+
+import org.bukkit.Material;
+import org.bukkit.command.PluginCommand;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class TheCoilFireworks extends JavaPlugin implements Listener {
+   public void onEnable() {
+      this.getServer().getPluginManager().registerEvents(this, this);
+      PluginCommand command = this.getCommand("getunbreakablefirework");
+      if (command == null) {
+         this.getLogger().warning("Command 'getunbreakablefirework' is not registered!");
+      } else {
+         command.setExecutor((sender, cmd, label, args) -> {
+            if (sender instanceof Player) {
+               Player player = (Player)sender;
+               if (player.hasPermission("firework.give")) {
+                  ItemStack fireworkRocket = new ItemStack(Material.FIREWORK_ROCKET, 1);
+                  ItemMeta meta = fireworkRocket.getItemMeta();
+                  if (meta != null) {
+                     meta.setUnbreakable(true);
+                     fireworkRocket.setItemMeta(meta);
+                  }
+
+                  player.getInventory().addItem(new ItemStack[]{fireworkRocket});
+                  player.sendMessage("You have been given an unbreakable firework rocket!");
+               } else {
+                  player.sendMessage("You do not have permission to use this command.");
+               }
+            } else {
+               sender.sendMessage("Only players can use this command.");
+            }
+
+            return true;
+         });
+      }
+   }
+}
